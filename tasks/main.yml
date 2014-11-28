@@ -1,2 +1,7 @@
 ---
 # tasks file for rsync
+
+- name: Install rsync package
+  yum: name=rsync state=present
+  tags: rsync
+  
