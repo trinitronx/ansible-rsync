@@ -1,7 +1,14 @@
 ---
 # tasks file for rsync
 
-- name: Install rsync package
-  yum: name=rsync state=present
+- name: Include distribution specific variables
+  include_vars: "{{ ansible_distribution }}.yml"
   tags: rsync
-  
+
+- include: CentOS.yml
+  when: ansible_distribution == "CentOS"
+  tags: rsync
+
+- include: Ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+  tags: rsync

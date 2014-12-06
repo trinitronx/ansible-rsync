@@ -1,0 +1,6 @@
+---
+# tasks file for rsync (CentOS specific)
+
+- name: Install rsync package
+  yum: name=rsync state=present
+  tags: rsync
