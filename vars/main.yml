@@ -1,2 +1,5 @@
 ---
 # vars file for rsync
+
+rsync_packages:
+  - rsync

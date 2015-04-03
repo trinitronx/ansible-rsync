@@ -1,6 +1,7 @@
 ---
 # tasks file for rsync (Ubuntu specific)
 
-- name: Install rsync package
-  apt: name=rsync state=present update_cache=yes
+- name: Install rsync packages
+  apt: name={{ item }} state=present update_cache=yes
+  with_items: rsync_packages
   tags: rsync
