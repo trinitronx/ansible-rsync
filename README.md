@@ -11,17 +11,22 @@ This role requires Ansible 1.4 or higher.
 Role Variables
 --------------
 
+None
+
 Dependencies
 ------------
+
+None
 
 Example Playbook
 ----------------
 
-1) Installs rsync
-
-    - hosts: all
-      roles:
-         - { role: rsync }
+Install rsync
+```
+- hosts: all
+  roles:
+    - { role: kbrebanov.rsync }
+```
 
 License
 -------
