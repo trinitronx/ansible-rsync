@@ -1,5 +1,5 @@
 ---
-# tasks file for rsync (CentOS specific)
+# tasks file for installing rsync on yum based distros
 
 - name: Install rsync packages
   yum: name={{ item }} state=present

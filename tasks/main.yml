@@ -5,10 +5,10 @@
   include_vars: "{{ ansible_distribution }}.yml"
   tags: rsync
 
-- include: CentOS.yml
-  when: ansible_distribution == "CentOS"
-  tags: rsync
 
-- include: Ubuntu.yml
-  when: ansible_distribution == "Ubuntu"
+- include: apt_package.yml
+  when: ansible_pkg_mgr == 'apt'
+  tags: rsync
+- include: yum_package.yml
+  when: ansible_pkg_mgr == 'yum'
   tags: rsync
