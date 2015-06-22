@@ -1,0 +1,3 @@
+# This file is for validating that the xinetd rsync service works
+# It should be placed in /tmp/kitchen by kitchen-ansible,
+# and should be served by the share defined in /etc/rsyncd.conf
