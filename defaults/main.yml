@@ -1,2 +1,32 @@
 ---
 # defaults file for rsync
+
+rsync_install_daemon: false
+
+# Only install rsync by default, (xinetd daemon is only needed if rsync_install_daemon is set)
+rsync_packages:
+  - rsync
+
+# Changing this to 'yes' will disable the rsync service, so you probably want to leave
+# this alone...
+rsync_disable: "no"
+
+# See rsync(1) man page for details on how to set the server arguments
+# http://linux.die.net/man/1/rsync
+rsync_server_args: "--daemon"
+
+# See xinetd.conf(5) man page for details on how to set the xinetd service arguments
+# http://linux.die.net/man/5/xinetd.conf
+rsync_log_on_failure: "USERID"
+rsync_flags: IPv6
+rsync_socket_type: stream
+rsync_port: 873
+rsync_protocol: tcp
+rsync_wait: no
+rsync_user: root
+rsync_server: /usr/bin/rsync
+
+rsync_daemon_manage_config: true
+rsync_daemon_lock_file: /var/run/rsync.lock
+rsync_daemon_log_file: /var/log/rsyncd.log
+rsync_daemon_pid_file: /var/run/rsyncd.pid
