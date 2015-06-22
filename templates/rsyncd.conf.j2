@@ -1,3 +1,4 @@
+{% if rsync_daemon_max_connections is defined and rsync_daemon_max_connections is number %}max connections = {{ rsync_daemon_max_connections | int }}{% endif %}
 lock file = {{ rsync_daemon_lock_file }}
 log file = {{ rsync_daemon_log_file }}
 pid file = {{ rsync_daemon_pid_file }}
