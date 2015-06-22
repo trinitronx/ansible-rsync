@@ -1,0 +1,12 @@
+lock file = {{ rsync_daemon_lock_file }}
+log file = {{ rsync_daemon_log_file }}
+pid file = {{ rsync_daemon_pid_file }}
+
+{% if rsync_daemon_shares is defined %}
+{%   for (share, share_settings) in rsync_daemon_shares.iteritems() %}
+[{{ share }}]
+{%     for (key, value) in share_settings.iteritems() %}
+    {{ key }} = {{ value }}
+{%     endfor %}
+{%   endfor %}
+{% endif %}

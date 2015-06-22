@@ -1,0 +1,16 @@
+#jinja2:trim_blocks: False
+# rsync daemon configuration
+# {{ ansible_managed }}
+ service rsync
+ {
+         disable = {% if rsync_disable is string and rsync_disable | match("^(no|yes)$") %}{{ rsync_disable }}{% else %}{{ rsync_disable | ternary('yes','no') }}{% endif %}
+ flags           = {{ rsync_flags }}
+ socket_type     = {{ rsync_socket_type }}
+ port            = {{ rsync_port }}
+ protocol        = {{ rsync_protocol }}
+ wait            = {% if rsync_wait is string and rsync_wait | match("^(no|yes)$") %}{{ rsync_wait }}{% else %}{{ rsync_wait | ternary('yes','no') }}{% endif %}
+ user            = {{ rsync_user }}
+ server          = {{ rsync_server }}
+ server_args     = {{ rsync_server_args }}
+ log_on_failure  += {{ rsync_log_on_failure }}
+ }
