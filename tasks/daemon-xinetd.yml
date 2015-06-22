@@ -1,0 +1,49 @@
+---
+# tasks file for rsync xinetd daemon
+
+- name: Install rsync daemon xinetd config
+  template: >
+    dest=/etc/xinetd.d/rsync
+    src=rsync-daemon-xinetd.j2
+    owner=root
+    group=root
+    mode=0644
+  notify: reload rsync
+  tags:
+    - rsync
+    - rsync_daemon
+
+- name: Install rsyncd.conf
+  template: >
+    dest=/etc/rsyncd.conf
+    src=rsyncd.conf.j2
+    owner=root
+    group=root
+    mode=0644
+  when: rsync_daemon_manage_config
+  notify: restart rsync
+  tags:
+    - rsync
+    - rsync_daemon
+
+- name: Install /etc/rsyncd.secrets
+  template: >
+    dest=/etc/rsyncd.secrets
+    src=rsyncd.secrets.j2
+    owner=root
+    group=root
+    mode=0600
+  when: rsync_daemon_user_secrets is defined
+  notify: restart rsync
+  tags:
+    - rsync
+    - rsync_daemon
+
+- name: Ensure service is started
+  service:
+    name: "{{ rsync_service }}"
+    state: started
+    enabled: true
+  tags:
+    - rsync
+    - rsync_daemon

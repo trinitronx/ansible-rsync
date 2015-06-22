@@ -1,0 +1,8 @@
+---
+# vars file for rsync xinetd daemon
+
+rsync_service: xinetd
+
+rsync_packages:
+  - xinetd
+  - rsync

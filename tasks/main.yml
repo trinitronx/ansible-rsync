@@ -5,6 +5,12 @@
   include_vars: "{{ ansible_distribution }}.yml"
   tags: rsync
 
+- name: Include daemon-xinetd vars
+  include_vars: "daemon-xinetd.yml"
+  when: rsync_install_daemon
+  tags:
+    - rsync
+    - rsync_daemon
 
 - include: apt_packages.yml
   when: ansible_pkg_mgr == 'apt'
@@ -12,3 +18,9 @@
 - include: yum_packages.yml
   when: ansible_pkg_mgr == 'yum'
   tags: rsync
+
+- include: daemon-xinetd.yml
+  when: rsync_install_daemon
+  tags:
+    - rsync
+    - rsync_daemon
