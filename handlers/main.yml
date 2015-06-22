@@ -1,2 +1,11 @@
 ---
 # handlers file for rsync
+- name: restart rsync
+  service:
+    name: "{{ rsync_service }}"
+    state: restarted
+
+- name: reload rsync
+  service:
+    name: "{{ rsync_service }}"
+    state: reloaded
