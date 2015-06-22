@@ -55,3 +55,23 @@ describe service( 'xinetd' ) do
   it { should be_enabled }
   it { should be_running }
 end
+
+# For each user we defined in rsync_daemon_user_secrets, test that we can login & list files from "kitchen" module/share
+[ 'kitchen', 'vagrant' ].each do |rsync_user|
+  describe command("RSYNC_PASSWORD='#{ rsync_user }'   rsync -rtv #{ rsync_user }@127.0.0.1::kitchen | grep -c 'sentinel-file'") do
+    its(:exit_status) { should eq 0 }
+    its(:stdout) { should match /^1$/ }
+  end
+end
+
+# Transfer the sentinel-file to /tmp/, and check that it contains what we expect
+describe command("RSYNC_PASSWORD='vagrant'   rsync -rtv vagrant@127.0.0.1::kitchen/roles/*/test/integration/sentinel-file /tmp/") do
+  its(:exit_status) { should eq 0 }
+  its(:stdout) { should match /^sent \d+ bytes  received \d+ bytes  [0-9\.]+ bytes\/sec$/ }
+  its(:stdout) { should match /^total size is \d+  speedup is [0-9\.]+$/ }
+end
+
+describe file( '/tmp/sentinel-file' ) do
+  it { should be_file }
+  its(:content) { should match /^# This file is for validating that the xinetd rsync service works$/ }
+end
