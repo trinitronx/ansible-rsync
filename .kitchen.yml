@@ -25,7 +25,7 @@ platforms:
   #- name: ubuntu-10.04 # lucid
   #- name: ubuntu-12.04 # precise
   #- name: ubuntu-13.10 # saucy
-  #- name: ubuntu-14.04 # trusty
+  - name: ubuntu-14.04 # trusty
   # - name: ubuntu-14.10 # utopic ## No bento box yet... Official Scheduled Release: October 23rd 2014
   # - name: centos-5.10 # TODO: NOT TESTED YET... unsure if kitchen-ansible works yet...
   - name: centos-6.4
