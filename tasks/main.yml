@@ -6,9 +6,9 @@
   tags: rsync
 
 
-- include: apt_package.yml
+- include: apt_packages.yml
   when: ansible_pkg_mgr == 'apt'
   tags: rsync
-- include: yum_package.yml
+- include: yum_packages.yml
   when: ansible_pkg_mgr == 'yum'
   tags: rsync
