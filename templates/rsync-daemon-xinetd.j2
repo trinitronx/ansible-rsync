@@ -6,8 +6,8 @@
          disable = {% if rsync_disable is string and rsync_disable | match("^(no|yes)$") %}{{ rsync_disable }}{% else %}{{ rsync_disable | ternary('yes','no') }}{% endif %}
  flags           = {{ rsync_flags }}
  socket_type     = {{ rsync_socket_type }}
- port            = {{ rsync_port }}
- protocol        = {{ rsync_protocol }}
+{% if rsync_port is defined %} port            = {{ rsync_port }}{% endif %}
+{% if rsync_protocol is defined %} protocol        = {{ rsync_protocol }}{% endif %}
  wait            = {% if rsync_wait is string and rsync_wait | match("^(no|yes)$") %}{{ rsync_wait }}{% else %}{{ rsync_wait | ternary('yes','no') }}{% endif %}
  user            = {{ rsync_user }}
  server          = {{ rsync_server }}
