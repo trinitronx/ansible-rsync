@@ -9,5 +9,7 @@ pid file = {{ rsync_daemon_pid_file }}
 {%     for (key, value) in share_settings.iteritems() %}
     {{ key }} = {{ value }}
 {%     endfor %}
+    auth users = {{ rsync_daemon_user_secrets.keys() | join(', ') }}
+    secrets file = /etc/rsyncd.secrets
 {%   endfor %}
 {% endif %}
