@@ -56,9 +56,9 @@ suites:
             gid: vagrant
             read only: "no"
             list: "yes"
-            auth users: vagrant, kitchen
-            secrets file: /etc/rsyncd.secrets
             hosts allow: 127.0.0.1/255.255.255.0
+            # auth users: vagrant, kitchen
+            # secrets file: /etc/rsyncd.secrets
         # Normally these vars would be in Ansible Vault
         rsync_daemon_user_secrets:
           vagrant: vagrant
