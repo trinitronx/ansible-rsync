@@ -171,3 +171,5 @@ Author Information
 ------------------
 
 Kevin Brebanov
+
+James Cuzella ([@trinitronx](https://github.com/trinitronx))
